@@ -16,5 +16,7 @@ public class MyFirstJava {
         
         System.out.println("\nAhoj " + jmeno + "!");
         System.out.println("Máš " + roky + " roků.");
+
+        scanner.close();
     }
 }
