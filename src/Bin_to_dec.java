@@ -2,16 +2,7 @@ import java.util.Scanner;
 
 public class Bin_to_dec {
     
-// Metoda pro ověření platnosti celého čísla
-    public static boolean isValidInteger(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-    
+
         public static void main (String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         
@@ -25,24 +16,29 @@ public class Bin_to_dec {
 
         
         // Převod čísla z desítkového na binární
-        System.out.print("Zadej číslo v desítkové soustavě: ");
-        String StringDesitkoveCislo = scanner.nextLine();
-        
-        if (isValidInteger(StringDesitkoveCislo)) {
-            int DesitkoveCislo = Integer.parseInt(StringDesitkoveCislo);
+        System.out.print("Zadej číslo v desítkové soustavě: "); String StringDesitkoveCislo = scanner.nextLine();
 
-            for (int i = DesitkoveCislo; i > 0;) {
+        String PrvniZnak = StringDesitkoveCislo.substring(0,1); 
+        String OstatniZnaky = "0" + StringDesitkoveCislo.substring(1);
+        
+        if ((PrvniZnak.equals("+") || PrvniZnak.matches("[0-9]")) && OstatniZnaky.matches("\\d+")) {
+        // šlo by zkrátit i takto: if (StringDesitkoveCislo.matches("[+]?\\d+")) {
+        
+            int DesitkoveCislo = Integer.parseInt(StringDesitkoveCislo); // převod stringu na integer
+            
+            while (DesitkoveCislo > 0) {
                 int Zbytek = DesitkoveCislo % 2;
                 BinarniCislo1 = Zbytek + BinarniCislo1;
                 DesitkoveCislo = DesitkoveCislo / 2;
             }
+            
             System.out.println(BinarniCislo1);
-        }   else {
+        }   
+        
+        else {
             chyba = true;
         }
         
-
-
 
         // Převod čísla z binárního na desítkové
         System.out.print("Zadej číslo v binárním kódu: ");
